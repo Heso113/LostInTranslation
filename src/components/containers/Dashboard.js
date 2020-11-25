@@ -12,6 +12,9 @@ const Dashboard = () => {
     const handleTranslateButtonClicked = (data) => {
         //Update translation history in localstorage
         let translationHistory = getStorage('userHistory');
+        if (translationHistory === false) {
+            translationHistory = [];
+        }
         translationHistory.push(data);
         if (translationHistory.length > 10) {
             translationHistory = translationHistory.reverse();

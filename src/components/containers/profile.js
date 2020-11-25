@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { getStorage } from '../utils/localStorage';
+import { getStorage, setStorage } from '../utils/localStorage';
 
 
 const Profile = () => { 
     
     const [ history, setHistory ] = useState([]);  
     
+    const onClearHistoryClicked = e => {
+        setHistory([]);
+        setStorage('userHistory', []);
+        console.log(getStorage('userHistory'));
+    }
+
     const onBackClicked = e => { 
         console.log('Clicked back!');
         setHistory(getStorage('userHistory'));
@@ -15,6 +21,7 @@ const Profile = () => {
         <div>
             Profile Username
             <div>
+                <button type="button" onClick={ onClearHistoryClicked }>Clear History</button>
                 <button type="button" onClick={ onBackClicked }>Back</button>
             </div>
             <div>
