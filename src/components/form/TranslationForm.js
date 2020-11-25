@@ -7,11 +7,14 @@ const TranslationForm = props => {
     const onTranslateClicked = e => {
         const arr = [];
         for (let i = 0; i < sentence.length; i++) {
+            let newObject = {character: '', sprite: ''};
+            newObject.character = sentence[i];
             if (sentence[i] !== ' ') {
-                arr.push('/resources/signs/' + sentence[i] + '.png');
+                newObject.sprite = '/resources/signs/' + sentence[i] + '.png';
             } else {
-                arr.push('/resources/signs/space.png');
+                newObject.sprite = '/resources/signs/space.png';
             }
+            arr.push(newObject);
         }
         props.translateButtonClicked(arr);
     };

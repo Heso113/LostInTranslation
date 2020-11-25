@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TranslationForm from '../form/TranslationForm';
 
 const Dashboard = () => {
 
-    const [ message, setMessage ] = useState([]);
-    
+    const [ history, setHistory ] = useState([]);    
+
+    useEffect(() => {
+        console.log('Sweet!');
+    }, [history]);
+
     const handleTranslateButtonClicked = (sentence) => {
-        setMessage(sentence);
+        let searchHistory = history;
+        searchHistory.push(sentence);
+        if (searchHistory.length > 10) {
+            searchHistory = searchHistory.reverse();
+            searchHistory.pop();
+            searchHistory = searchHistory.reverse();
+        }
+        setHistory(searchHistory);
+        // console.log(history);
     }
 
     return (
@@ -16,11 +28,15 @@ const Dashboard = () => {
             </h1>
             <TranslationForm translateButtonClicked={ handleTranslateButtonClicked } />
             <div>
-                <span>
-                    {message.map((sign, index) => 
-                        <img src={sign} alt="this is a sign" key={index}></img> 
-                    )}
-                </span>
+                {history.map((s, index) => 
+                    <div key={index}>
+                        <span>
+                            {s.map((sign, index) => 
+                                <img src={sign.sprite} alt="this is a sign" key={index}></img> 
+                            )}
+                        </span>
+                    </div>                
+                )}
             </div>
         </div> 
     )
