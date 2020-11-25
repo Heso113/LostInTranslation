@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import TranslationForm from '../form/TranslationForm';
+import { setStorage, getStorage } from '../utils/localStorage';
 
 const Dashboard = () => {
 
-    const [ history, setHistory ] = useState([]);    
+    const [ latestTranslation, setLatestTranslation ] = useState({sentence: '', arr: []});
 
     useEffect(() => {
-        console.log('Sweet!');
-    }, [history]);
+    }, [latestTranslation]);
 
-    const handleTranslateButtonClicked = (sentence) => {
-        let searchHistory = history;
-        searchHistory.push(sentence);
-        if (searchHistory.length > 10) {
-            searchHistory = searchHistory.reverse();
-            searchHistory.pop();
-            searchHistory = searchHistory.reverse();
+    const handleTranslateButtonClicked = (data) => {
+        //Update translation history in localstorage
+        let translationHistory = getStorage('userHistory');
+        translationHistory.push(data);
+        if (translationHistory.length > 10) {
+            translationHistory = translationHistory.reverse();
+            translationHistory.pop();
+            translationHistory = translationHistory.reverse();
         }
-        setHistory(searchHistory);
-        // console.log(history);
+        //Save translation history in local storage and set latest translation
+        setStorage('userHistory', translationHistory);
+        setLatestTranslation(data);
     }
 
     return (
@@ -28,15 +30,13 @@ const Dashboard = () => {
             </h1>
             <TranslationForm translateButtonClicked={ handleTranslateButtonClicked } />
             <div>
-                {history.map((s, index) => 
-                    <div key={index}>
-                        <span>
-                            {s.map((sign, index) => 
-                                <img src={sign.sprite} alt="this is a sign" key={index}></img> 
-                            )}
-                        </span>
-                    </div>                
-                )}
+                <h3>Sentence: { latestTranslation.sentence }</h3>
+                <span>
+                    {latestTranslation.arr.map((sign, index) => 
+                        <img src={sign.sprite} alt="this is a sign" key={index}></img> 
+                    )}
+                </span>
+                <h3>Translation</h3>
             </div>
         </div> 
     )

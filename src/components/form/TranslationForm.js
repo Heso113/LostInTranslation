@@ -5,18 +5,20 @@ const TranslationForm = props => {
     const [ sentence, setSentence ] = useState('');
 
     const onTranslateClicked = e => {
-        const arr = [];
-        for (let i = 0; i < sentence.length; i++) {
-            let newObject = {character: '', sprite: ''};
-            newObject.character = sentence[i];
-            if (sentence[i] !== ' ') {
-                newObject.sprite = '/resources/signs/' + sentence[i] + '.png';
-            } else {
-                newObject.sprite = '/resources/signs/space.png';
+        if (sentence.length > 0) {
+            const arr = [];
+            for (let i = 0; i < sentence.length; i++) {
+                let newObject = {character: '', sprite: ''};
+                newObject.character = sentence[i];
+                if (sentence[i] !== ' ') {
+                    newObject.sprite = '/resources/signs/' + sentence[i] + '.png';
+                } else {
+                    newObject.sprite = '/resources/signs/space.png';
+                }
+                arr.push(newObject);
             }
-            arr.push(newObject);
-        }
-        props.translateButtonClicked(arr);
+            props.translateButtonClicked({sentence: sentence, arr: arr});
+        } 
     };
     
     const onSentenceChanged = ev => {
@@ -28,8 +30,6 @@ const TranslationForm = props => {
             <div>
                 <label>Sentence</label>
                 <input type="text" placeholder="Enter a sentence to translate..." onChange={ onSentenceChanged }></input>
-            </div>
-            <div>
                 <button type="button" onClick={ onTranslateClicked }>Translate</button>
             </div>
         </form>
