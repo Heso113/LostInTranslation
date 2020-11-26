@@ -1,1 +1,3 @@
 [1125/115214.558:ERROR:directory_reader_win.cc(43)] FindFirstFile: Det går inte att hitta sökvägen. (0x3)
+[1125/151214.933:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1126/085031.532:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

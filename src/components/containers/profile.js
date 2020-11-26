@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getStorage, setStorage } from '../utils/localStorage';
 
 
-const Profile = () => { 
+const Profile = props => { 
     
     const [ history, setHistory ] = useState([]);  
+
     
+    useEffect(() => {
+        setHistory(getStorage('userHistory'));
+    }, [])
+
     const onClearHistoryClicked = e => {
         setHistory([]);
         setStorage('userHistory', []);
         console.log(getStorage('userHistory'));
     }
 
-    const onBackClicked = e => { 
-        console.log('Clicked back!');
-        setHistory(getStorage('userHistory'));
+    const onTranslatorClicked = e => { 
+        props.translatorButtonClicked();
     }
 
     return (
@@ -22,7 +26,7 @@ const Profile = () => {
             Profile Username
             <div>
                 <button type="button" onClick={ onClearHistoryClicked }>Clear History</button>
-                <button type="button" onClick={ onBackClicked }>Back</button>
+                <button type="button" onClick={ onTranslatorClicked }>Translator</button>
             </div>
             <div>
                 <h1>Search History</h1>
@@ -36,7 +40,7 @@ const Profile = () => {
                                 )}
                             </span>
                             <h3>Translation</h3>
-                        </div>                
+                        </div>         
                     )}
                 </div>
             </div>
