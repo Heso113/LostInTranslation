@@ -8,18 +8,18 @@ class Auth {
 
     login(user,cb) {
         this.authenticated= true;
-         setStorge('ra_session',user)
-        cb()
+        setStorge('ra_session',user);
+        cb();
     }
 
     logout(cb) {
         this.authenticated= false;
         clearStorge();
-        cb()
+        cb();
     }
 
     isAuthenticated() {
-        if(getStorge){
+        if(getStorge('ra_session')){
             console.log('Is authenticated');
             return this.authenticated;
         }

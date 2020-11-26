@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import LoginForm from '../form/LoginForm'
 import auth from '../../utils/auth'
-import { Redirect } from 'react-router-dom';
 
 const Login = (props) => {
 
     const hadleLoginComplete = (user) => {
         console.log('Triggered from LoginForm', user);
 
-        if (auth.isAuthenticated()) {
+        if (!auth.isAuthenticated()) {
             auth.login(user, () => {
                 props.history.push("/dashboard");
             });
