@@ -8,7 +8,13 @@ const Profile = props => {
 
     
     useEffect(() => {
-        setHistory(getStorage('userHistory'));
+        let history = getStorage('userHistory');
+        if (!history) {
+            setHistory([]);
+        }
+        else {
+            setHistory(history);
+        }
     }, [])
 
     const onClearHistoryClicked = e => {
