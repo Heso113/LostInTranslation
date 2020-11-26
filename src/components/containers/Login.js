@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginForm from '../form/LoginForm'
 import auth from '../../utils/auth'
 
 const Login = (props) => {
+
+    useEffect(() => {
+        if(auth.isAuthenticated()) {
+            props.history.push("/dashboard");
+        }
+        console.log(auth.isAuthenticated());
+    })
 
     const hadleLoginComplete = (user) => {
         console.log('Triggered from LoginForm', user);

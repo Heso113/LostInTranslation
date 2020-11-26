@@ -38,9 +38,9 @@ const Dashboard = (props) => {
                 Welcome to the Dashboard!
             </h1>
             <div>
+                <button onClick={hadleLogOut}>Logout</button>
                 { showTranslator ? <Translator profileButtonClicked={ renderProfile } />: null}
                 { showProfile ? <Profile translatorButtonClicked={ renderTranslator } />: null }
-                <button onClick={hadleLogOut}>Logout</button>
             </div>
         </div> 
     )
