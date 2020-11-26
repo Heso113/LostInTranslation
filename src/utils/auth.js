@@ -19,10 +19,14 @@ class Auth {
     }
 
     isAuthenticated() {
-        if(getStorge('ra_session')){
+        let session = getStorge('ra_session'); 
+        if(!session){
+            console.log('Is not authenticated');
+        } else {
+            this.authenticated = true;
             console.log('Is authenticated');
-            return this.authenticated;
         }
+        return this.authenticated;
     }
 }
 
