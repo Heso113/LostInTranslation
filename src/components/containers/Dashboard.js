@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Profile from './profile';
 import Translator from './Translator';
+import auth from '../../utils/auth'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
     const [ showTranslator, setShowTranslator ] = useState(true);  
     const [ showProfile, setShowProfile ] = useState(false);  
+
+    const hadleLogOut =()=> {
+
+        if(auth.isAuthenticated){
+            auth.logout(()=> {
+                props.history.push("/login");
+            });
+        }
+    }
 
     useEffect(() => {
         setShowProfile(false);
@@ -30,9 +40,9 @@ const Dashboard = () => {
             <div>
                 { showTranslator ? <Translator profileButtonClicked={ renderProfile } />: null}
                 { showProfile ? <Profile translatorButtonClicked={ renderTranslator } />: null }
+                <button onClick={hadleLogOut}>Logout</button>
             </div>
         </div> 
     )
 }
-
 export default Dashboard;
