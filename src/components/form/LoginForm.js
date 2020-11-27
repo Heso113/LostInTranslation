@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button, Form, Row, Col } from 'react-bootstrap';
 
 const LoginForm = props => {
     const [user, setUsername] = useState({});
@@ -10,17 +12,21 @@ const LoginForm = props => {
     const onUsernameChanged = ev => setUsername(ev.target.value.trim());
 
     return (
-        <form>
-            <div>
-                <label>Username: </label>
-                <input type="text" placeholder="Enter a username" onChange={onUsernameChanged} />
-            </div>
+        <Form className="m-5">
+            <Row>
+                <Col sm={8}>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="Enter a username" onChange={onUsernameChanged} />
+                    </Form.Group>
+                </Col>
+            </Row>
 
-            <div>
-                <button type="button" onClick={onLoginClicked}>Login</button>
-            </div>
-
-        </form>
+            <Row>
+                <Col sm={6}>
+                    <Button type="button" onClick={onLoginClicked}>Login</Button>
+                </Col>
+            </Row>
+        </Form>
     )
 };
 
