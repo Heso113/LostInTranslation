@@ -7,6 +7,7 @@ import { Button, Card } from 'react-bootstrap';
 const Translator = props => {
 
     const [latestTranslation, setLatestTranslation] = useState({ sentence: '', arr: [] });
+    const [showCard, setShowCard] = useState(false);
 
     useEffect(() => {
     }, [latestTranslation]);
@@ -30,6 +31,7 @@ const Translator = props => {
         //Save translation history in local storage and set latest translation
         setStorage('userHistory', translationHistory);
         setLatestTranslation(data);
+        setShowCard(true);
     }
 
     return (
@@ -37,18 +39,19 @@ const Translator = props => {
             <Button type="button" onClick={onProfileButtonClicked}>Profile</Button>
             <TranslationForm translateButtonClicked={handleTranslateButtonClicked} />
 
-            <Card>
-                <Card.Header>{latestTranslation.sentence}</Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <span>
-                            {latestTranslation.arr.map((sign, index) =>
-                                <img src={sign.sprite} alt="this is a sign" key={index}></img>
-                            )}
-                        </span>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
+            {showCard ?
+                <Card>
+                    <Card.Header>{latestTranslation.sentence}</Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <span>
+                                {latestTranslation.arr.map((sign, index) =>
+                                    <img src={sign.sprite} alt="this is a sign" key={index}></img>
+                                )}
+                            </span>
+                        </Card.Text>
+                    </Card.Body>
+                </Card> : null}
         </>
     );
 }

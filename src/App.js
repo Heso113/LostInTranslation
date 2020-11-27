@@ -7,7 +7,7 @@ import Login from './components/containers/Login'
 import NotFound from './components/containers/NotFound'
 import Dashboard from './components/containers/Dashboard'
 import ProtectedRoute from './routers/protected.route'
-import NotFound from './components/containers/NotFound'
+
 
 function App() {
     return (
