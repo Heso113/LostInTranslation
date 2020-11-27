@@ -13,5 +13,5 @@ This application is translator from regular English text to American sign langau
 - The application uses localstorge to save search history and user data. The data will be removed automatically when the user logout.
 
 ### Usage:
-![](screenshot.gif)
+![](Screenshot.gif)
 
