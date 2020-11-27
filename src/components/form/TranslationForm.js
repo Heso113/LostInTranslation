@@ -22,7 +22,7 @@ const TranslationForm = props => {
                 arr.push(newObject);
             }
             props.translateButtonClicked({ sentence: sentence, arr: arr });
-        }
+        } 
     };
 
     const onSentenceChanged = ev => {
@@ -48,11 +48,11 @@ const TranslationForm = props => {
 
     return (
         <Form className="m-5">
-            <Form.Group>
-                <Form.Control type="text" placeholder="Enter a sentence to translate..." onChange={onSentenceChanged} />
-            </Form.Group>
-            <Button disabled={!validInput} type="button" onClick={onTranslateClicked}>Translate</Button>
-            {!validInput ? <p>{invalidInputMessage}</p> : null}
+                <Form.Group>
+                    <Form.Control type="text" placeholder="Enter a sentence to translate..." onChange={onSentenceChanged} />
+                </Form.Group>
+                <Button disabled={!validInput} type="button" onClick={onTranslateClicked}>Translate</Button>
+                {!validInput ? <p>{invalidInputMessage}</p> : null}
         </Form>
 
     );

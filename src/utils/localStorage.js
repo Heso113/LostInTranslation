@@ -13,3 +13,7 @@ export const getStorage = (key) => {
         return JSON.parse(atob(encryptedValue));
     } 
 }
+
+export const clearStorage = () => {
+    localStorage.clear();
+}
