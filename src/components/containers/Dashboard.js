@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Profile from './profile';
 import Translator from './Translator';
 import auth from '../../utils/auth'
+import { getStorage } from '../utils/localStorage';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Navbar, Button } from 'react-bootstrap';
 
 const Dashboard = (props) => {
 
-    const [ showTranslator, setShowTranslator ] = useState(true);  
-    const [ showProfile, setShowProfile ] = useState(false);  
+    const [showTranslator, setShowTranslator] = useState(true);
+    const [showProfile, setShowProfile] = useState(false);
 
-    const hadleLogOut =()=> {
+    const hadleLogOut = () => {
 
-        if(auth.isAuthenticated){
-            auth.logout(()=> {
+        if (auth.isAuthenticated) {
+            auth.logout(() => {
                 props.history.push("/login");
             });
         }
@@ -34,15 +37,18 @@ const Dashboard = (props) => {
 
     return (
         <div>
-            <h1>
-                Welcome to the Dashboard!
-            </h1>
-            <div>
-                <button onClick={hadleLogOut}>Logout</button>
-                { showTranslator ? <Translator profileButtonClicked={ renderProfile } />: null}
-                { showProfile ? <Profile translatorButtonClicked={ renderTranslator } />: null }
-            </div>
-        </div> 
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="/dashboard">
+                    Lost in translation
+                        </Navbar.Brand>
+                <div className="ml-auto">
+                    <Button className="mr-3" variant="info">Profile: {getStorage('ra_session') }</Button>
+                    <Button className="ml-3" variant="warning" onClick={hadleLogOut}>Logout</Button>
+                </div>
+            </Navbar>
+            {showTranslator ? <Translator profileButtonClicked={renderProfile} /> : null}
+            {showProfile ? <Profile translatorButtonClicked={renderTranslator} /> : null}
+        </div>
     )
 }
 export default Dashboard;

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { getStorage, setStorage } from '../utils/localStorage';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button, Card } from 'react-bootstrap';
+
+const Profile = props => {
+
+    const [history, setHistory] = useState([]);
 
 
-const Profile = props => { 
-    
-    const [ history, setHistory ] = useState([]);  
-
-    
     useEffect(() => {
         let history = getStorage('userHistory');
         if (!history) {
@@ -23,34 +24,38 @@ const Profile = props => {
         console.log(getStorage('userHistory'));
     }
 
-    const onTranslatorClicked = e => { 
+    const onTranslatorClicked = e => {
         props.translatorButtonClicked();
     }
 
     return (
-        <div>
-            Profile Username
+        <>
             <div>
-                <button type="button" onClick={ onClearHistoryClicked }>Clear History</button>
-                <button type="button" onClick={ onTranslatorClicked }>Translator</button>
+                <Button className="m-3" variant="danger" type="button" onClick={onClearHistoryClicked}>Clear History</Button>
+                <Button variant="info" type="button" onClick={onTranslatorClicked}>Translator</Button>
             </div>
             <div>
                 <h1>Search History</h1>
                 <div>
-                    {history.map((s, index) => 
+                    {history.map((s, index) =>
                         <div key={index}>
-                            <h3>Sentence: { s.sentence }</h3>
-                            <span>
-                                {s.arr.map((sign, index) => 
-                                    <img src={sign.sprite} alt="this is a sign" key={index}></img> 
-                                )}
-                            </span>
-                            <h3>Translation</h3>
-                        </div>         
+                            <Card className="m-3">
+                                <Card.Header>{s.sentence}</Card.Header>
+                                <Card.Body>
+                                    <Card.Text>
+                                        <span>
+                                            {s.arr.map((sign, index) =>
+                                                <img src={sign.sprite} alt="this is a sign" key={index}></img>
+                                            )}
+                                        </span>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </div>
                     )}
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
