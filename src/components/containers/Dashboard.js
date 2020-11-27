@@ -42,7 +42,8 @@ const Dashboard = (props) => {
                     Lost in translation
                         </Navbar.Brand>
                 <div className="ml-auto">
-                    <Button className="mr-3" variant="info">Profile: {getStorage('ra_session') }</Button>
+                    <Button onClick={renderTranslator} className="mr-3" variant="primary">Translator</Button>
+                    <Button onClick={renderProfile} className="mr-3" variant="info">Profile: {getStorage('ra_session') }</Button>
                     <Button className="ml-3" variant="warning" onClick={hadleLogOut}>Logout</Button>
                 </div>
             </Navbar>
