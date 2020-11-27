@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Profile from './profile';
 import Translator from './Translator';
 import auth from '../../utils/auth'
-import { getStorage } from '../utils/localStorage';
+import { getStorage } from '../../utils/localStorage';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Navbar, Button } from 'react-bootstrap';
 
@@ -47,8 +47,8 @@ const Dashboard = (props) => {
                     <Button className="ml-3" variant="warning" onClick={hadleLogOut}>Logout</Button>
                 </div>
             </Navbar>
-            {showTranslator ? <Translator profileButtonClicked={renderProfile} /> : null}
-            {showProfile ? <Profile translatorButtonClicked={renderTranslator} /> : null}
+            {showTranslator ? <Translator /> : null}
+            {showProfile ? <Profile /> : null}
         </div>
     )
 }

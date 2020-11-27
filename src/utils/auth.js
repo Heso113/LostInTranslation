@@ -1,4 +1,4 @@
-import { setStorge, getStorge, clearStorge } from './localStorge';
+import { setStorage, getStorage, clearStorage } from './localStorage';
 
 class Auth {
     
@@ -8,18 +8,18 @@ class Auth {
 
     login(user,cb) {
         this.authenticated= true;
-        setStorge('ra_session',user);
+        setStorage('ra_session',user);
         cb();
     }
 
     logout(cb) {
         this.authenticated= false;
-        clearStorge();
+        clearStorage();
         cb();
     }
 
     isAuthenticated() {
-        let session = getStorge('ra_session'); 
+        let session = getStorage('ra_session'); 
         if(!session){
             console.log('Is not authenticated');
         } else {

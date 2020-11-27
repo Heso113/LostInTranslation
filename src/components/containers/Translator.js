@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import TranslationForm from '../form/TranslationForm';
-import { getStorage, setStorage } from '../utils/localStorage';
+import { getStorage, setStorage } from '../../utils/localStorage';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const Translator = props => {
 
@@ -11,10 +11,6 @@ const Translator = props => {
 
     useEffect(() => {
     }, [latestTranslation]);
-
-    const onProfileButtonClicked = e => {
-        props.profileButtonClicked();
-    }
 
     const handleTranslateButtonClicked = (data) => {
         //Update translation history in localstorage
@@ -36,8 +32,7 @@ const Translator = props => {
 
     return (
         <>
-            <Button type="button" onClick={onProfileButtonClicked}>Profile</Button>
-            <TranslationForm translateButtonClicked={handleTranslateButtonClicked} />
+            <TranslationForm translateButtonClicked={handleTranslateButtonClicked}/>
 
             {showCard ?
                 <Card>

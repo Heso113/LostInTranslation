@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getStorage, setStorage } from '../utils/localStorage';
+import { getStorage, setStorage } from '../../utils/localStorage';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Card } from 'react-bootstrap';
 
-const Profile = props => {
+const Profile = () => {
 
     const [history, setHistory] = useState([]);
 
@@ -24,15 +24,10 @@ const Profile = props => {
         console.log(getStorage('userHistory'));
     }
 
-    const onTranslatorClicked = e => {
-        props.translatorButtonClicked();
-    }
-
     return (
         <>
             <div>
                 <Button className="m-3" variant="danger" type="button" onClick={onClearHistoryClicked}>Clear History</Button>
-                <Button variant="info" type="button" onClick={onTranslatorClicked}>Translator</Button>
             </div>
             <div>
                 <h1>Search History</h1>
