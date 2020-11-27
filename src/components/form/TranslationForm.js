@@ -36,6 +36,13 @@ const TranslationForm = props => {
             setInvalidInputMessage('Error: Sentence can contain a maximum off 40 characters.');
         } else {
             setValidInput(true);
+            for(let i = 0; i < currentSentence.length; i++) {
+                let currentChar = currentSentence[i];
+                if (!((currentChar >= 'a' && currentChar <= 'z') || currentChar === ' ')) {
+                    setValidInput(false);
+                    setInvalidInputMessage('Error: Sentence may only contain letters and space.');
+                }
+            }
         }
     }
 
